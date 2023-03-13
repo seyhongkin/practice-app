@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\EnsureTokenIsValid;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+
+Route::get('/home', function () {
+    return 'welcome to home page';
+})->middleware([EnsureTokenIsValid::class]);
+
+Route::get('/login', function () {
+    return 'please login to have access';
 });
